@@ -1,26 +1,26 @@
-from fastapi import FastAPI, HTTPException, Query
-from src.task_executor import execute_task
-from src.file_operations import read_file
+from fastapi import FastAPI, HTTPException
+from src.executor import execute_task
+import logging
 
 app = FastAPI()
+logging.basicConfig(level=logging.INFO)
 
 @app.post("/run")
-def run_task(task: str = Query(..., description="Task description in plain English")):
+async def run_task(task: str):
     try:
+        logging.info(f"Received task: {task}")
         result = execute_task(task)
-        if result["status"] == "success":
-            return {"message": "Task executed successfully", "details": result}
-        else:
-            raise HTTPException(status_code=400, detail=result["error"])
+        logging.info(f"Task result: {result}")
+        return {"result": result}
     except Exception as e:
+        logging.error(f"Error executing task: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/read")
-def read_file_content(path: str = Query(..., description="File path to read")):
+async def read_file(path: str):
     try:
-        content = read_file(path)
-        return {"file_path": path, "content": content}
-    except FileNotFoundError:
-        raise HTTPException(status_code=404, detail="File not found")
+        with open(path, "r") as file:
+            content = file.read()
+        return {"content": content}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
