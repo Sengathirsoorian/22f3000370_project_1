@@ -43,16 +43,16 @@ This project involves the automation of operations tasks using an API and an LLM
 
 AI Proxy only supports these endpoints and models:
 
-GET https://aiproxy.sanand.workers.dev/openai/v1/models
-POST https://aiproxy.sanand.workers.dev/openai/v1/embeddings
+- GET https://aiproxy.sanand.workers.dev/openai/v1/models
+- POST https://aiproxy.sanand.workers.dev/openai/v1/embeddings
 model: text-embedding-3-small
-POST https://aiproxy.sanand.workers.dev/openai/v1/chat/completions
+- POST https://aiproxy.sanand.workers.dev/openai/v1/chat/completions
 model: gpt-4o-mini
 It returns a set of additional headers:
 
-cost: Cost of this request in USD
-monthlyCost: Total costs (in USD) of requests used this month. Monthly limit is $0.5 (resets at midnight UTC on the first of the next month).
-monthlyRequests: Total requests made this month.
+- cost: Cost of this request in USD
+- monthlyCost: Total costs (in USD) of requests used this month. Monthly limit is $0.5 (resets at midnight UTC on the first of the next month).
+- monthlyRequests: Total requests made this month.
 
 ## Skills & Technologies Used
 
