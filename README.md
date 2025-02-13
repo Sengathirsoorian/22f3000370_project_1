@@ -74,6 +74,5 @@ Feel free to fork the repository, submit issues, or create pull requests.
 
 ## License
 
-MIT License © [Your Name](https://github.com/Sengathirsoorian)
+MIT License © [Sengathirsoorian](https://github.com/Sengathirsoorian)
 
-```
